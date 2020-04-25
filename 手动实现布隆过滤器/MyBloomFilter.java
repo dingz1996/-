@@ -3,7 +3,6 @@ package Algorithm.手动实现布隆过滤器;
 import java.util.BitSet;
 
 public class MyBloomFilter implements Comparable{
-
     private static final int DEFAULT_SIZE = 2<<24;
     private static final int[] SEEDS = new int[]{3,13,46,71,91,134};
     private BitSet bits = new BitSet(DEFAULT_SIZE);

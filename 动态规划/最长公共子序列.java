@@ -1,7 +1,6 @@
 package Algorithm.动态规划;
 
 import java.util.Scanner;
-
 /**
  * 来源：牛客网
  *
