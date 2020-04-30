@@ -22,23 +22,54 @@ import java.util.Scanner;
  * "123456"和“12C4B6”都是最长公共子序列，任意输出一个。
  */
 public class 最长公共子序列 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String s1 = scanner.nextLine();
-        String s2 = scanner.nextLine();
-        int len1 = s1.length();
-        int len2 = s2.length();
-        char[] ss1 = s1.toCharArray();
-        char[] ss2 = s2.toCharArray();
-        int[] dp = new int[len2+1];
-        for(int i = 1;i<len1+1;i++){
-            int previous=0;
-            for(int j = 1;j<len2+1;j++){
-                int previous1 =dp[j];
-                  dp[j] = ss1[i-1]==ss2[j-1]?(previous+1):Math.max(dp[j-1],dp[j]);
-                  previous = previous1;
-            }
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//        String s1 = scanner.nextLine();
+//        String s2 = scanner.nextLine();
+//        int len1 = s1.length();
+//        int len2 = s2.length();
+//        char[] ss1 = s1.toCharArray();
+//        char[] ss2 = s2.toCharArray();
+//        int[] dp = new int[len2+1];
+//        for(int i = 1;i<len1+1;i++){
+//            int previous=0;
+//            for(int j = 1;j<len2+1;j++){
+//                int previous1 =dp[j];
+//                  dp[j] = ss1[i-1]==ss2[j-1]?(previous+1):Math.max(dp[j-1],dp[j]);
+//                  previous = previous1;
+//            }
+//        }
+//        System.out.println(dp[len2]);
+//    }
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] sit = new int[2*n];
+    for(int i = 0;i<2*n;i++)
+        sit[i] = sc.nextInt();
+    int sum = 0;
+    for (int i = 0; i < sit.length - 1; i += 2) {
+        if (!isSwap(sit[i], sit[i + 1])) {
+            int index = find(sit[i], sit);
+            int tmp = sit[index];
+            sit[index] = sit[i + 1];
+            sit[i + 1] = tmp;
+            sum++;
         }
-        System.out.println(dp[len2]);
+    }
+    System.out.println(sum);
+}
+    private static int find(int p, int[] row) {
+        int target = p + ((p & 1) == 1 ? -1 : 1);
+        for (int i = 0; i < row.length; i++) {
+            if (row[i] == target)
+                return i;
+        }
+        return 0;
+    }
+
+    static boolean isSwap(int p, int q) {
+        return Math.abs(q - p) == 1 && (Math.min(p, q) & 1) == 0;
     }
 }
+
