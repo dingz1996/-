@@ -10,7 +10,7 @@ B: [3,2,1,4,7]
 输出: 3
 解释： 长度最长的公共子串是 [3, 2, 1]。
  */
-public class 最长重复子串718 {
+public class 最长公共子串 {
     public int findLength(int[] A, int[] B) {
         int lena = A.length;
         int lenb = B.length;
