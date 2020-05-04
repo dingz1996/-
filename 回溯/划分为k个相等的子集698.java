@@ -40,9 +40,11 @@ public class 划分为k个相等的子集698 {
             k--;
         }
         //传入空数组
+        //如果我能把nums数组 [0,right]的值  都填充到指定k个数组中  且每个数组的值不能超过single 则返回true
         return backTracking(new int[k],right,singel,nums);
     }
     private static boolean backTracking(int[] sets,int index,int sum,int[] nums){
+        //特殊情况：处理边界
         if(index<0)return true;
         for(int i = 0;i<sets.length;i++){
             if((sets[i]+nums[index])<=sum){
